@@ -3,10 +3,10 @@
 # 
 
 VERSIONS = $(sort $(dir $(wildcard */)))
+COMMENT := Release commit.
 
-BASEDIR = $(shell pwd)
 
-.PHONY: build push release clean list help
+.PHONY: help build push push-docker push-git release clean list
 
 ################################################################################
 # Image related commands.
@@ -15,23 +15,37 @@ help:
 	@cat README.md
 
 build:
-	@echo "Building for versions: $(VERSIONS)"
-	$(foreach ver,$(VERSIONS), cd $(BASEDIR)/$(ver); make $@;)
+	@echo "################################################################################"
+	@echo "Gearbox: Building for versions: $(VERSIONS)"
+	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
 
 push:
-	@echo "Pushing to GitHub for versions: $(VERSIONS)"
-	$(foreach ver,$(VERSIONS), cd $(BASEDIR)/$(ver); make $@;)
+	@make push-docker
+	@make push-git
+
+push-docker:
+	@echo "################################################################################"
+	@echo "Gearbox: Pushing to DockerHub for versions: $(VERSIONS)"
+	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
+
+push-git:
+	@echo "################################################################################"
+	@echo "Gearbox: Pushing to GitHub."
+	if [ -d .git ]; then git commit -m "$(COMMENT)" . && git push; fi
 
 release:
-	$(foreach ver,$(VERSIONS), cd $(BASEDIR)/$(ver); make $@;)
+	@echo "################################################################################"
+	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
 
 clean:
-	@echo "Cleaning up for versions: $(VERSIONS)"
-	$(foreach ver,$(VERSIONS), cd $(BASEDIR)/$(ver); make $@;)
+	@echo "################################################################################"
+	@echo "Gearbox: Cleaning up for versions: $(VERSIONS)"
+	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
 
 list:
-	@echo "Listing for versions: $(VERSIONS)"
-	$(foreach ver,$(VERSIONS), cd $(BASEDIR)/$(ver); make $@;)
+	@echo "################################################################################"
+	@echo "Gearbox: Listing for versions: $(VERSIONS)"
+	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
 
 ################################################################################
 default: help

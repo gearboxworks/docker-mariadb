@@ -232,6 +232,7 @@ build-real:
 	@make check-config BUILD_TYPE=$(BUILD_TYPE)
 
 ifneq ($(SKIP),yes)
+	@echo "Gearbox: Building container."
 	@script -r -t 10 logs/$(LOGFILE) docker build -t $(IMAGE_NAME):$(VERSION) --label gearbox.json='$(call rawJSON)' --label container.organization="$(ORGANIZATION)" --label container.name="$(NAME)" --label container.version="$(VERSION)" --label container.majorversion="$(MAJORVERSION)" --label container.latest="$(LATEST)" --label container.class="$(CLASS)" --label container.network="$(NETWORK)" --label container.ports="$(PORTS)" --label container.volumes="$(VOLUMES)" --label container.restart="$(RESTART)" --label container.args="$(ARGS)" --label container.env="$(ENV)" --build-arg $(ENV)="$(VERSION)" $(BUILD_ARGS) -f $(DOCKERFILE) .
 	@echo "Gearbox: Log file saved to \"logs/$(LOGFILE)\""
 ifneq ($(MAJORVERSION),)
@@ -245,7 +246,10 @@ push-real:
 	@make check-config BUILD_TYPE=$(BUILD_TYPE)
 
 ifneq ($(SKIP),yes)
-	docker push $(IMAGE_NAME):$(VERSION)
+	@if [ -d .git ]; then echo "Gearbox: Pushing changes to GitHub."; git commit -m "Release commit." .. && git push; fi
+
+	@echo "Gearbox: Pushing changes to DockerHub."
+	-docker push $(IMAGE_NAME):$(VERSION)
 ifneq ($(MAJORVERSION),)
 	docker push $(IMAGE_NAME):$(MAJORVERSION)
 endif
