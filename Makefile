@@ -4,7 +4,7 @@
 
 VERSIONS = $(sort $(dir $(wildcard */)))
 COMMENT := Release commit.
-
+BASEDIR = $(shell pwd)
 
 .PHONY: help build push push-docker push-git release clean list
 
@@ -17,7 +17,7 @@ help:
 build:
 	@echo "################################################################################"
 	@echo "Gearbox: Building for versions: $(VERSIONS)"
-	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
+	$(foreach ver,$(VERSIONS), make -C $(BASEDIR)/$(ver) $@;)
 
 push:
 	@make push-docker
@@ -26,7 +26,7 @@ push:
 push-docker:
 	@echo "################################################################################"
 	@echo "Gearbox: Pushing to DockerHub for versions: $(VERSIONS)"
-	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
+	$(foreach ver,$(VERSIONS), make -C $(BASEDIR)/$(ver) $@;)
 
 push-git:
 	@echo "################################################################################"
@@ -35,17 +35,17 @@ push-git:
 
 release:
 	@echo "################################################################################"
-	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
+	$(foreach ver,$(VERSIONS), make -C $(BASEDIR)/$(ver) $@;)
 
 clean:
 	@echo "################################################################################"
 	@echo "Gearbox: Cleaning up for versions: $(VERSIONS)"
-	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
+	$(foreach ver,$(VERSIONS), make -C $(BASEDIR)/$(ver) $@;)
 
 list:
 	@echo "################################################################################"
 	@echo "Gearbox: Listing for versions: $(VERSIONS)"
-	$(foreach ver,$(VERSIONS), make -C $(VERSIONS) $@;)
+	$(foreach ver,$(VERSIONS), make -C $(BASEDIR)/$(ver) $@;)
 
 ################################################################################
 default: help
