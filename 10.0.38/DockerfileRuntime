@@ -1,36 +1,92 @@
-# We are going to reference the gearbox-base container indirectly.
-ARG VERSION="10.0.38"
+
+
+################################################################################
+# WARNING: This file has been auto-generated. DO NOT EDIT: WARNING
+# Created on 2020-03-16T11:11:36+1100, using template:DockerfileRuntime.tmpl and json:gearbox.json
+# Referenced Docker container for docker-mariadb based off gearboxworks/gearbox-base:debian-buster with mariadb:10.0.38 overlayed.
+
+ARG VERSION=10.0.38
 
 # 1. First reference the gearbox-base image.
-FROM gearboxworks/gearbox-base:debian-stretch as gearbox-base
+FROM gearboxworks/gearbox-base:debian-buster as gearbox-base
 
 # 2. Next reference the third party image.
-ARG VERSION="10.0.38"
-FROM mariadb:$VERSION
+FROM mariadb:10.0.38
+ARG VERSION
+ARG GEARBOX_ENTRYPOINT
+ARG GEARBOX_ENTRYPOINT_ARGS
+USER root
 
 # 3. Copy the build directory over from gearbox-base image.
-COPY --from=gearbox-base /build /build
+COPY --from=gearbox-base /etc/gearbox /etc/gearbox
 
-# 4. Now copy the local files specific to this container.
-COPY build /build
-COPY gearbox.json /build/gearbox.json
-
-# 5. Set up env variables.
+# 4. Set up env variables.
 MAINTAINER Gearbox Team <team@gearbox.works>
 ENV GEARBOX_CONTAINER_NAME "docker-mariadb"
-ENV GEARBOX_CONTAINER_VERSION $VERSION
-ENV MYSQL_ALLOW_EMPTY_PASSWORD=yes
-ENV MYSQL_DATABASE=wordpress
-ENV MYSQL_USER=wordpress
-ENV MYSQL_PASSWORD=wordpress
+ENV GEARBOX_CONTAINER_VERSION ${VERSION}
+ENV GEARBOX_ENTRYPOINT ${GEARBOX_ENTRYPOINT}
+ENV GEARBOX_ENTRYPOINT_ARGS ${GEARBOX_ENTRYPOINT_ARGS}
+LABEL gearbox.json='{"state": "production","organization": "gearboxworks","name": "mariadb","maintainer": "Gearbox Team <team@gearbox.works>","class": "database","network": "--network gearboxnet","ports": ["3306","33060"],"volumes": "","restart": "--restart no","run": "","args": "mariadb","env": {"MYSQL_ALLOW_EMPTY_PASSWORD":"yes","MYSQL_HOST":"127.0.0.1","MYSQL_DATABASE":"gearbox","MYSQL_USER":"gearbox","MYSQL_PASSWORD":"gearbox"},"refurl": "https://www.mariadb.org/","versions": {"10.0.38": {"majorversion": "10.0","latest": false,"ref": "mariadb:10.0.38","base": "gearboxworks/gearbox-base:debian-buster"},"10.1.44": {"majorversion": "10.1","latest": false,"ref": "mariadb:10.1.44","base": "gearboxworks/gearbox-base:debian-buster"},"10.2.31": {"majorversion": "10.2","latest": false,"ref": "mariadb:10.2.31","base": "gearboxworks/gearbox-base:debian-buster"},"10.3.22": {"majorversion": "10.3","latest": false,"ref": "mariadb:10.3.22","base": "gearboxworks/gearbox-base:debian-buster"},"10.4.12": {"majorversion": "10.4","latest": false,"ref": "mariadb:10.4.12","base": "gearboxworks/gearbox-base:debian-buster"},"10.5.1": {"majorversion": "10.5","latest": true,"ref": "mariadb:10.5.1","base": "gearboxworks/gearbox-base:debian-buster"},"5.5.64": {"majorversion": "5.5","latest": false,"ref": "mariadb:5.5.64","base": "gearboxworks/gearbox-base:debian-buster"}}}'
+LABEL gearbox.version='10.0.38'
+ENV GEARBOX_VERSION "10.0.38"
+LABEL container.args="mariadb"
+ENV GEARBOX_ARGS "mariadb"
+LABEL container.class="database"
+ENV GEARBOX_CLASS "database"
+# SKIP env
+LABEL container.maintainer="Gearbox Team <team@gearbox.works>"
+ENV GEARBOX_MAINTAINER "Gearbox Team <team@gearbox.works>"
+LABEL container.name="mariadb"
+ENV GEARBOX_NAME "mariadb"
+LABEL container.network="--network gearboxnet"
+ENV GEARBOX_NETWORK "--network gearboxnet"
+LABEL container.organization="gearboxworks"
+ENV GEARBOX_ORGANIZATION "gearboxworks"
+LABEL container.ports="[3306 33060]"
+ENV GEARBOX_PORTS "[3306 33060]"
+LABEL container.refurl="https://www.mariadb.org/"
+ENV GEARBOX_REFURL "https://www.mariadb.org/"
+LABEL container.restart="--restart no"
+ENV GEARBOX_RESTART "--restart no"
+LABEL container.run=""
+ENV GEARBOX_RUN ""
+LABEL container.state="production"
+ENV GEARBOX_STATE "production"
+# SKIP versions
+LABEL container.volumes=""
+ENV GEARBOX_VOLUMES ""
+LABEL container.base="gearboxworks/gearbox-base:debian-buster"
+ENV GEARBOX_BASE "gearboxworks/gearbox-base:debian-buster"
+LABEL container.latest="false"
+ENV GEARBOX_LATEST "false"
+LABEL container.majorversion="10.0"
+ENV GEARBOX_MAJORVERSION "10.0"
+LABEL container.ref="mariadb:10.0.38"
+ENV GEARBOX_REF "mariadb:10.0.38"
+ENV MYSQL_ALLOW_EMPTY_PASSWORD "yes"
+ENV MYSQL_DATABASE "gearbox"
+ENV MYSQL_HOST "127.0.0.1"
+ENV MYSQL_PASSWORD "gearbox"
+ENV MYSQL_USER "gearbox"
 
-# 6. Run the build-base.sh script to set everything up.
-RUN /bin/bash /build/build-base.sh
+# 5. Now copy the local files specific to this container.
+COPY build /etc/gearbox
+COPY ${VERSION}/build /etc/gearbox
+COPY ${VERSION}/gearbox.json /etc/gearbox/gearbox.json
 
-# 7. Run the build-mariadb.sh script to set everything up.
-RUN /bin/bash /build/build-mariadb.sh
+# 6. Run the base.sh script to set everything up.
+RUN /bin/sh /etc/gearbox/build/base.sh
+
+# 7. Run the mariadb.sh script to set everything up.
+RUN /bin/sh /etc/gearbox/build/mariadb.sh
 
 # 8. Expose ports.
-EXPOSE 3306 9970
-WORKDIR /project/www
+EXPOSE 22 9970 3306 33060 
+WORKDIR /home/gearbox/projects
+
+CMD ["/init"]
+
+# END
+################################################################################
+
 
