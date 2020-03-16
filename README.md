@@ -1,108 +1,102 @@
-![MariaDB 10.3.x](https://img.shields.io/badge/MariaDB-10.3.x-green.svg)
-![MariaDB 10.2.x](https://img.shields.io/badge/MariaDB-10.2.x-green.svg)
-![MariaDB 10.1.x](https://img.shields.io/badge/MariaDB-10.1.x-green.svg)
-![MariaDB 10.0.x](https://img.shields.io/badge/MariaDB-10.0.x-green.svg)
-![MariaDB 5.5.x](https://img.shields.io/badge/MariaDB-5.5.x-green.svg)
-
 ![Gearbox](https://github.com/gearboxworks/gearbox.github.io/raw/master/Gearbox-100x.png)
 
 
-# MariaDB Docker Container for Gearbox
-This is the repository for the [mariadb-docker](https://www.mariadb.com/) Docker container implemented for [Gearbox](https://github.com/gearboxworks/gearbox).
-It currently provides versions 5.5.x 10.0.x 10.1.x 10.2.x 10.3.x
+# Another [Gearbox](https://github.com/gearboxworks/) Docker container service - mariadb
+This is the repository for the [mariadb](https://www.mariadb.org/) Docker container implemented for [Gearbox](https://github.com/gearboxworks/).
 
 
-## Supported tags and respective Dockerfiles
+## Repository Info
+GitHub commit: ![commit-date](https://img.shields.io/github/last-commit/gearboxworks/docker-mariadb?style=flat-square)
 
-`10.3.6`, `10.3` _([10.3.6/Dockerfile](https://github.com/gearboxworks/mariadb-docker/blob/master/10.3.6/Dockerfile))_
+GitHub release(latest): ![last-release-date](https://img.shields.io/github/release-date/gearboxworks/docker-mariadb) ![last-release-date](https://img.shields.io/github/v/tag/gearboxworks/docker-mariadb?sort=semver) [![release-state](https://github.com/gearboxworks/docker-mariadb/workflows/release/badge.svg?event=release)](https://github.com/gearboxworks/docker-mariadb/actions?query=workflow%3Arelease)
 
-`10.2.14`, `10.2`, `latest` _([10.2.14/Dockerfile](https://github.com/gearboxworks/mariadb-docker/blob/master/10.2.14/Dockerfile))_
 
-`10.1.32`, `10.1` _([10.1.32/Dockerfile](https://github.com/gearboxworks/mariadb-docker/blob/master/10.1.32/Dockerfile))_
-
-`10.0.34`, `10.0` _([10.0.34/Dockerfile](https://github.com/gearboxworks/mariadb-docker/blob/master/10.0.34/Dockerfile))_
-
-`5.5.60`, `5.5` _([5.5.60/Dockerfile](https://github.com/gearboxworks/mariadb-docker/blob/master/5.5.60/Dockerfile))_
+## Supported versions and respective Dockerfiles
+| Service | GitHub Version | Docker Version | Docker Size | Docker Tags | Dockerfile |
+| ------- | -------------- | -------------- | ----------- | ----------- | ---------- |
+| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.0.38-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.0.38) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.0.38) | _([`10.0.38`, `10.0`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.0/DockerfileRuntime))_ |
+| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.1.44-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.1.44) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.1.44) | _([`10.1.44`, `10.1`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.1/DockerfileRuntime))_ |
+| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.2.31-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.2.31) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.2.31) | _([`10.2.31`, `10.2`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.2/DockerfileRuntime))_ |
+| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.3.22-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.3.22) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.3.22) | _([`10.3.22`, `10.3`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.3/DockerfileRuntime))_ |
+| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.4.12-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.4.12) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.4.12) | _([`10.4.12`, `10.4`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.4/DockerfileRuntime))_ |
+| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.5.1-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.5.1) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.5.1) | _([`10.5.1`, `10.5`, `latest`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.5/DockerfileRuntime))_ |
+| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-5.5.64-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/5.5.64) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/5.5.64) | _([`5.5.64`, `5.5`](https://github.com/gearboxworks/docker-mariadb/blob/master/5.5/DockerfileRuntime))_ |
 
 
 ## Using this container.
-If you want to use this container as part of Gearbox, then use the Docker Hub method.
-Or you can use the GitHub method to build and run the container.
+This container has been designed to work within the [Gearbox](https://github.com/gearboxworks/)
+framework.
+However, due to the flexability of Gearbox, it can be used outside of this framework.
+You can either use it directly from DockerHub or GitHub.
 
 
-## Using it from Docker Hub
-
-### Links
-(Docker Hub repo)[https://hub.docker.com/r/gearbox/mariadb/]
-
-(Docker Cloud repo)[https://cloud.docker.com/swarm/gearbox/repository/docker/gearbox/mariadb/]
-
-
-### Setup from Docker Hub
-A simple `docker pull gearbox/mariadb` will pull down the latest version.
-
-
-### Runtime from Docker Hub
-start - Spin up a Docker container with the correct runtime configs.
-
-`docker run -d --name mariadb-10.3.6 --restart unless-stopped --network gearboxnet -p 3306:3306 -v $PROJECT_ROOT/sql:/docker-entrypoint-initdb.d -v mariadb_data:/var/lib/mariadb gearbox/mariadb:10.3.6`
-
-stop - Stop a Docker container.
-
-`docker stop mariadb-10.3.6`
-
-run - Run a Docker container in the foreground, (all STDOUT and STDERR will go to console). The Container be removed on termination.
-
-`docker run --rm --name mariadb-10.3.6 --network gearboxnet -p 3306:3306 -v $PROJECT_ROOT/sql:/docker-entrypoint-initdb.d -v mariadb_data:/var/lib/mariadb gearbox/mariadb:10.3.6`
-
-shell - Run a shell, (/bin/bash), within a Docker container.
-
-`docker run --rm --name mariadb-10.3.6 -i -t --network gearboxnet -p 3306:3306 -v $PROJECT_ROOT/sql:/docker-entrypoint-initdb.d -v mariadb_data:/var/lib/mariadb gearbox/mariadb:10.3.6 /bin/bash`
-
-rm - Remove the Docker container.
-
-`docker container rm mariadb-10.3.6`
-
-
-## Using it from GitHub repo
+## Method 1: GitHub repo
 
 ### Setup from GitHub repo
 Simply clone this repository to your local machine
 
 `git clone https://github.com/gearboxworks/mariadb-docker.git`
 
-
 ### Building from GitHub repo
 `make build` - Build Docker images. Build all versions from the base directory or specific versions from each directory.
 
-
 `make list` - List already built Docker images. List all versions from the base directory or specific versions from each directory.
-
 
 `make clean` - Remove already built Docker images. Remove all versions from the base directory or specific versions from each directory.
 
-
 `make push` - Push already built Docker images to Docker Hub, (only for Gearbox admins). Push all versions from the base directory or specific versions from each directory.
-
 
 ### Runtime from GitHub repo
 When you `cd` into a version directory you can also perform a few more actions.
 
 `make start` - Spin up a Docker container with the correct runtime configs.
 
-
 `make stop` - Stop a Docker container.
-
 
 `make run` - Run a Docker container in the foreground, (all STDOUT and STDERR will go to console). The Container be removed on termination.
 
-
 `make shell` - Run a shell, (/bin/bash), within a Docker container.
-
 
 `make rm` - Remove the Docker container.
 
-
 `make test` - Will issue a `stop`, `rm`, `clean`, `build`, `create` and `start` on a Docker container.
 
+
+## Method 2: Docker Hub
+
+### Setup from Docker Hub
+A simple `docker pull gearbox/mariadb` will pull down the latest version.
+
+### Starting
+start - Spin up a Docker container with the correct runtime configs.
+
+`docker run -d --name mariadb-latest --restart unless-stopped --network gearboxnet gearbox/mariadb:latest`
+
+### Stopping
+stop - Stop a Docker container.
+
+`docker stop mariadb-latest`
+
+### Remove container
+rm - Remove the Docker container.
+
+`docker container rm mariadb-latest`
+
+### Run in foreground
+run - Run a Docker container in the foreground, (all STDOUT and STDERR will go to console). The Container be removed on termination.
+
+`docker run --rm --name mariadb-latest --network gearboxnet gearbox/mariadb:latest`
+
+### Run a shell
+shell - Run a shell, (/bin/bash), within a Docker container.
+
+`docker run --rm --name mariadb-latest -i -t --network gearboxnet gearbox/mariadb:latest /bin/bash`
+
+### SSH
+ssh - All [Gearbox](https://github.com/gearboxworks/) containers have a running SSH daemon. So you can connect remotely.
+
+```
+SSH_PORT="$(docker port mariadb-latest 22/tcp | sed 's/0.0.0.0://')"
+ssh -p ${SSH_PORT} -o StrictHostKeyChecking=no gearbox@localhost
+```
 
