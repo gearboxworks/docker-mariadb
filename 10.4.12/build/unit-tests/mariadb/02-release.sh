@@ -1,5 +1,5 @@
 #!/bin/bash
-# Created on 2020-03-16T18:40:53+1100, using template:02-release.sh.tmpl and json:gearbox.json
+# Created on 2020-03-16T22:31:35+1100, using template:02-release.sh.tmpl and json:gearbox.json
 
 p_info "mariadb-10.4.12" "Release test started."
 
