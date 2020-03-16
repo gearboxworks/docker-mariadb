@@ -1,0 +1,8 @@
+#!/bin/bash
+# {{ $.CreationInfo }}
+
+p_info "{{ .Json.name }}-{{ .Env.VERSION }}" "Release test started."
+
+ps -eaf
+
+p_info "{{ .Json.name }}-{{ .Env.VERSION }}" "Release test finished."
