@@ -457,10 +457,10 @@ gb_logs() {
 	do
 		gb_getenv ${GB_VERSION}
 
-		if [ -f "${GB_VERSION}/logs/${GB_NAME}.log" ]
+		if [ -f "${GB_VERSION}/logs/build.log" ]
 		then
 			p_info "${GB_IMAGEMAJORVERSION}" "Showing logs."
-			script -dp "${GB_VERSION}/logs/${GB_NAME}.log" | less -SinR
+			script -dp "${GB_VERSION}/logs/build.log" | less -SinR
 		else
 			p_warn "${GB_IMAGEMAJORVERSION}" "No logs."
 		fi

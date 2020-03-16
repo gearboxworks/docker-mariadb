@@ -75,23 +75,13 @@ upload() {
 
 find_last_version() {
 	${DIR}/github-release info -u gearboxworks -r "${GB_GITREPO}" -j > /tmp/z
-	if [ -s /tmp/z ]
-	then
-		LAST_VERSION="$(${DIR}/JsonToConfig -json /tmp/z -template-string '{{ with index .Json.Releases 0 }}{{ .tag_name }}{{ end }}')"
-	else
-		LAST_VERSION=""
-	fi
+	LAST_VERSION="$(${DIR}/JsonToConfig -json /tmp/z -template-string '{{ with index .Json.Releases 0 }}{{ .tag_name }}{{ end }}')"
 }
 
 get_description() {
 	GET_VERSION="$1"; export GET_VERSION
 	${DIR}/github-release info -u gearboxworks -r "${GB_GITREPO}" -j > /tmp/z
-	if [ -s /tmp/z ]
-	then
-		LAST_DESCRIPTION="$(${DIR}/JsonToConfig -json /tmp/z -template-string '{{ range $k,$v := .Json.Releases }}{{ if eq .tag_name $.Env.GET_VERSION }}{{ .body }}{{ end }}{{ end }}')"
-	else
-		LAST_DESCRIPTION=""
-	fi
+	LAST_DESCRIPTION="$(${DIR}/JsonToConfig -json /tmp/z -template-string '{{ range $k,$v := .Json.Releases }}{{ if eq .tag_name $.Env.GET_VERSION }}{{ .body }}{{ end }}{{ end }}')"
 }
 
 
