@@ -8,6 +8,7 @@ c_ok "Started."
 c_ok "Installing packages."
 APKBIN="$(which apk)"
 if [ "${APKBIN}" != "" ]
+then
 	if [ -f /etc/gearbox/build/mariadb.apks ]
 	then
 		APKS="$(cat /etc/gearbox/build/mariadb.apks)"
@@ -17,6 +18,7 @@ fi
 
 APTBIN="$(which apt-get)"
 if [ "${APTBIN}" != "" ]
+then
 	if [ -f /etc/gearbox/build/mariadb.apt ]
 	then
 		DEBS="$(cat /etc/gearbox/build/mariadb.apt)"

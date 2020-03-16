@@ -12,7 +12,7 @@
 	"volumes": "",
 	"restart": "--restart no",
 	"run": "",
-	"args": "mariadb",
+	"args": "mysqld",
 	"env": {
 		"MYSQL_ALLOW_EMPTY_PASSWORD":"yes",
 		"MYSQL_HOST":"127.0.0.1",
@@ -26,43 +26,43 @@
 			"majorversion": "10.0",
 			"latest": false,
 			"ref": "mariadb:10.0.38",
-			"base": "gearboxworks/gearbox-base:debian-buster"
+			"base": "gearboxworks/gearbox-base:ubuntu-bionic"
 		},
 		"10.1.44": {
 			"majorversion": "10.1",
 			"latest": false,
 			"ref": "mariadb:10.1.44",
-			"base": "gearboxworks/gearbox-base:debian-buster"
+			"base": "gearboxworks/gearbox-base:ubuntu-bionic"
 		},
 		"10.2.31": {
 			"majorversion": "10.2",
 			"latest": false,
 			"ref": "mariadb:10.2.31",
-			"base": "gearboxworks/gearbox-base:debian-buster"
+			"base": "gearboxworks/gearbox-base:ubuntu-bionic"
 		},
 		"10.3.22": {
 			"majorversion": "10.3",
 			"latest": false,
 			"ref": "mariadb:10.3.22",
-			"base": "gearboxworks/gearbox-base:debian-buster"
+			"base": "gearboxworks/gearbox-base:ubuntu-bionic"
 		},
 		"10.4.12": {
 			"majorversion": "10.4",
 			"latest": false,
 			"ref": "mariadb:10.4.12",
-			"base": "gearboxworks/gearbox-base:debian-buster"
+			"base": "gearboxworks/gearbox-base:ubuntu-bionic"
 		},
 		"10.5.1": {
 			"majorversion": "10.5",
 			"latest": true,
 			"ref": "mariadb:10.5.1",
-			"base": "gearboxworks/gearbox-base:debian-buster"
+			"base": "gearboxworks/gearbox-base:ubuntu-bionic"
 		},
 		"5.5.64": {
 			"majorversion": "5.5",
 			"latest": false,
 			"ref": "mariadb:5.5.64",
-			"base": "gearboxworks/gearbox-base:debian-buster"
+			"base": "gearboxworks/gearbox-base:ubuntu-bionic"
 		}
 	}
 }

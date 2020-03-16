@@ -1,14 +1,13 @@
 
-
 ################################################################################
 # WARNING: This file has been auto-generated. DO NOT EDIT: WARNING
-# Created on 2020-03-16T11:11:37+1100, using template:DockerfileRuntime.tmpl and json:gearbox.json
-# Referenced Docker container for docker-mariadb based off gearboxworks/gearbox-base:debian-buster with mariadb:5.5.64 overlayed.
+# Created on 2020-03-16T18:40:53+1100, using template:DockerfileRuntime.tmpl and json:gearbox.json
+# Referenced Docker container for docker-mariadb based off gearboxworks/gearbox-base:ubuntu-bionic with mariadb:5.5.64 overlayed.
 
 ARG VERSION=5.5.64
 
 # 1. First reference the gearbox-base image.
-FROM gearboxworks/gearbox-base:debian-buster as gearbox-base
+FROM gearboxworks/gearbox-base:ubuntu-bionic as gearbox-base
 
 # 2. Next reference the third party image.
 FROM mariadb:5.5.64
@@ -26,11 +25,11 @@ ENV GEARBOX_CONTAINER_NAME "docker-mariadb"
 ENV GEARBOX_CONTAINER_VERSION ${VERSION}
 ENV GEARBOX_ENTRYPOINT ${GEARBOX_ENTRYPOINT}
 ENV GEARBOX_ENTRYPOINT_ARGS ${GEARBOX_ENTRYPOINT_ARGS}
-LABEL gearbox.json='{"state": "production","organization": "gearboxworks","name": "mariadb","maintainer": "Gearbox Team <team@gearbox.works>","class": "database","network": "--network gearboxnet","ports": ["3306","33060"],"volumes": "","restart": "--restart no","run": "","args": "mariadb","env": {"MYSQL_ALLOW_EMPTY_PASSWORD":"yes","MYSQL_HOST":"127.0.0.1","MYSQL_DATABASE":"gearbox","MYSQL_USER":"gearbox","MYSQL_PASSWORD":"gearbox"},"refurl": "https://www.mariadb.org/","versions": {"10.0.38": {"majorversion": "10.0","latest": false,"ref": "mariadb:10.0.38","base": "gearboxworks/gearbox-base:debian-buster"},"10.1.44": {"majorversion": "10.1","latest": false,"ref": "mariadb:10.1.44","base": "gearboxworks/gearbox-base:debian-buster"},"10.2.31": {"majorversion": "10.2","latest": false,"ref": "mariadb:10.2.31","base": "gearboxworks/gearbox-base:debian-buster"},"10.3.22": {"majorversion": "10.3","latest": false,"ref": "mariadb:10.3.22","base": "gearboxworks/gearbox-base:debian-buster"},"10.4.12": {"majorversion": "10.4","latest": false,"ref": "mariadb:10.4.12","base": "gearboxworks/gearbox-base:debian-buster"},"10.5.1": {"majorversion": "10.5","latest": true,"ref": "mariadb:10.5.1","base": "gearboxworks/gearbox-base:debian-buster"},"5.5.64": {"majorversion": "5.5","latest": false,"ref": "mariadb:5.5.64","base": "gearboxworks/gearbox-base:debian-buster"}}}'
+LABEL gearbox.json='{"state": "production","organization": "gearboxworks","name": "mariadb","maintainer": "Gearbox Team <team@gearbox.works>","class": "database","network": "--network gearboxnet","ports": ["3306","33060"],"volumes": "","restart": "--restart no","run": "","args": "mysqld","env": {"MYSQL_ALLOW_EMPTY_PASSWORD":"yes","MYSQL_HOST":"127.0.0.1","MYSQL_DATABASE":"gearbox","MYSQL_USER":"gearbox","MYSQL_PASSWORD":"gearbox"},"refurl": "https://www.mariadb.org/","versions": {"10.0.38": {"majorversion": "10.0","latest": false,"ref": "mariadb:10.0.38","base": "gearboxworks/gearbox-base:ubuntu-bionic"},"10.1.44": {"majorversion": "10.1","latest": false,"ref": "mariadb:10.1.44","base": "gearboxworks/gearbox-base:ubuntu-bionic"},"10.2.31": {"majorversion": "10.2","latest": false,"ref": "mariadb:10.2.31","base": "gearboxworks/gearbox-base:ubuntu-bionic"},"10.3.22": {"majorversion": "10.3","latest": false,"ref": "mariadb:10.3.22","base": "gearboxworks/gearbox-base:ubuntu-bionic"},"10.4.12": {"majorversion": "10.4","latest": false,"ref": "mariadb:10.4.12","base": "gearboxworks/gearbox-base:ubuntu-bionic"},"10.5.1": {"majorversion": "10.5","latest": true,"ref": "mariadb:10.5.1","base": "gearboxworks/gearbox-base:ubuntu-bionic"},"5.5.64": {"majorversion": "5.5","latest": false,"ref": "mariadb:5.5.64","base": "gearboxworks/gearbox-base:ubuntu-bionic"}}}'
 LABEL gearbox.version='5.5.64'
 ENV GEARBOX_VERSION "5.5.64"
-LABEL container.args="mariadb"
-ENV GEARBOX_ARGS "mariadb"
+LABEL container.args="mysqld"
+ENV GEARBOX_ARGS "mysqld"
 LABEL container.class="database"
 ENV GEARBOX_CLASS "database"
 # SKIP env
@@ -55,8 +54,8 @@ ENV GEARBOX_STATE "production"
 # SKIP versions
 LABEL container.volumes=""
 ENV GEARBOX_VOLUMES ""
-LABEL container.base="gearboxworks/gearbox-base:debian-buster"
-ENV GEARBOX_BASE "gearboxworks/gearbox-base:debian-buster"
+LABEL container.base="gearboxworks/gearbox-base:ubuntu-bionic"
+ENV GEARBOX_BASE "gearboxworks/gearbox-base:ubuntu-bionic"
 LABEL container.latest="false"
 ENV GEARBOX_LATEST "false"
 LABEL container.majorversion="5.5"
@@ -88,5 +87,3 @@ CMD ["/init"]
 
 # END
 ################################################################################
-
-
