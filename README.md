@@ -12,8 +12,8 @@ GitHub release(latest): ![last-release-date](https://img.shields.io/github/relea
 
 
 ## Supported versions and respective Dockerfiles
-| Service | GitHub Version | Docker Version | Docker Size | Docker Tags | Dockerfile |
-| ------- | -------------- | -------------- | ----------- | ----------- | ---------- |
+| Service | GitHub Version | Docker Version | Docker Size | Docker Tags |
+| ------- | -------------- | -------------- | ----------- | ----------- |
 | [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.0.38-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.0.38) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.0.38) | _([`10.0.38`, `10.0`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.0/DockerfileRuntime))_ |
 | [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.1.44-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.1.44) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.1.44) | _([`10.1.44`, `10.1`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.1/DockerfileRuntime))_ |
 | [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.2.31-green.svg) | ![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.2.31) | ![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.2.31) | _([`10.2.31`, `10.2`](https://github.com/gearboxworks/docker-mariadb/blob/master/10.2/DockerfileRuntime))_ |
