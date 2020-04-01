@@ -1,26 +1,40 @@
 {
-	"state": "production",
-	"organization": "gearboxworks",
-	"name": "mariadb",
-	"maintainer": "Gearbox Team <team@gearbox.works>",
-	"class": "database",
-	"network": "--network gearboxnet",
-	"ports": [
-		"3306",
-		"33060"
-	],
-	"volumes": "",
-	"restart": "--restart no",
-	"run": "",
-	"args": "mysqld",
-	"env": {
-		"MYSQL_ALLOW_EMPTY_PASSWORD":"yes",
-		"MYSQL_HOST":"127.0.0.1",
-		"MYSQL_DATABASE":"gearbox",
-		"MYSQL_USER":"gearbox",
-		"MYSQL_PASSWORD":"gearbox"
+	"schema": "gear-1",
+	"meta": {
+		"state": "production",
+		"organization": "gearboxworks",
+		"name": "mariadb",
+		"label": "Mariadb",
+		"maintainer": "Gearbox Team <team@gearbox.works>",
+		"class": "database",
+		"refurl": "https://www.mariadb.org/"
 	},
-	"refurl": "https://www.mariadb.org/",
+	"build": {
+		"ports": {
+
+			"mysql": "3306",
+			"unknown": "33060"
+		},
+		"run": "",
+		"args": "mysqld",
+		"env": {
+
+			"MYSQL_ALLOW_EMPTY_PASSWORD": "yes",
+			"MYSQL_DATABASE": "gearbox",
+			"MYSQL_HOST": "127.0.0.1",
+			"MYSQL_PASSWORD": "gearbox",
+			"MYSQL_USER": "gearbox"
+		},
+		"network": "--network gearboxnet",
+		"volumes": "",
+		"restart": "--restart no"
+	},
+	"run": {
+	},
+	"project": {
+	},
+	"extensions": {
+	},
 	"versions": {
 		"10.0.38": {
 			"majorversion": "10.0",
@@ -63,6 +77,7 @@
 			"latest": false,
 			"ref": "mariadb:5.5.64",
 			"base": "gearboxworks/gearbox-base:ubuntu-bionic"
-		}
+		},
+		"": {}
 	}
 }
