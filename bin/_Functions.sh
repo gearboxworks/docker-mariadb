@@ -630,7 +630,8 @@ gb_release() {
 	do
 		gb_clean ${GB_VERSION} && \
 		gb_build ${GB_VERSION} && \
-		gb_test ${GB_VERSION}
+		gb_test ${GB_VERSION} && \
+		gb_dockerhub ${GB_VERSION}
 	done
 
 	return 0
