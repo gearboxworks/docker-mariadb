@@ -1,7 +1,7 @@
 
 ################################################################################
 # WARNING: This file has been auto-generated. DO NOT EDIT: WARNING
-# Created on 2020-04-03T14:16:00+1100, using template:DockerfileRuntime.tmpl and json:gearbox.json
+# Created on 2020-04-03T18:46:45+1100, using template:DockerfileRuntime.tmpl and json:gearbox.json
 # Referenced Docker container for docker-mariadb based off gearboxworks/gearbox-base:ubuntu-bionic with mariadb:10.5.1 overlayed.
 
 ARG VERSION=10.5.1
