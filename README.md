@@ -71,9 +71,9 @@ Create, and start the mariadb Gearbox container. Run a shell.
 
 `./bin/gb-launch -gb-name mariadb -gb-shell`
 
-Create, and start the mariadb Gearbox container with version 10.5.1 and run a shell.
+Create, and start the mariadb Gearbox container with version 10.1.44 and run a shell.
 
-`./bin/gb-launch -gb-name mariadb -gb-version 10.5.1 -gb-shell`
+`./bin/gb-launch -gb-name mariadb -gb-version 10.1.44 -gb-shell`
 
 If mariadb is symlinked to `gb-launch`, then you can drop the `-gb-name` flag.
 
@@ -83,18 +83,18 @@ Running mariadb Gearbox container default command. If a container has a default 
 
 `./bin/mariadb -flag1 -flag2 variable`
 
-`./bin/gb-launch -gb-name mariadb -gb-version 10.5.1 -flag1 -flag2 variable`
+`./bin/gb-launch -gb-name mariadb -gb-version 10.1.44 -flag1 -flag2 variable`
 
 
 Running alternate commands within the mariadb Gearbox container.
 
 `./bin/mariadb -gb-shell -- ls -l`
 
-`./bin/gb-launch -gb-name mariadb -gb-version 10.5.1 -gb-shell -- ls -l`
+`./bin/gb-launch -gb-name mariadb -gb-version 10.1.44 -gb-shell -- ls -l`
 
 `./bin/mariadb -gb-shell -- ps -eaf`
 
-`./bin/gb-launch -gb-name mariadb -gb-version 10.5.1 -gb-shell -- ps -eaf`
+`./bin/gb-launch -gb-name mariadb -gb-version 10.1.44 -gb-shell -- ps -eaf`
 
 
 ssh - All [Gearbox](https://github.com/gearboxworks/) containers have a running SSH daemon. So you can connect remotely.
