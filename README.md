@@ -19,7 +19,7 @@ GitHub release(latest): ![last-release-date](https://img.shields.io/github/relea
 | [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.2.31-green.svg) | [![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.2.31)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | [![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.2.31)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | _([`10.2.31`, `10.2`](https://github.com/gearboxworks/docker-mariadb/blob/master/versions/10.2.31/DockerfileRuntime))_ |
 | [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.3.22-green.svg) | [![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.3.22)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | [![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.3.22)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | _([`10.3.22`, `10.3`](https://github.com/gearboxworks/docker-mariadb/blob/master/versions/10.3.22/DockerfileRuntime))_ |
 | [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.4.12-green.svg) | [![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.4.12)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | [![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.4.12)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | _([`10.4.12`, `10.4`](https://github.com/gearboxworks/docker-mariadb/blob/master/versions/10.4.12/DockerfileRuntime))_ |
-| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.5.1-green.svg) | [![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.5.1)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | [![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.5.1)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | _([`10.5.1`, `10.5`, `latest`](https://github.com/gearboxworks/docker-mariadb/blob/master/versions/10.5.1/DockerfileRuntime))_ |
+| [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-10.5.2-green.svg) | [![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/10.5.2)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | [![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/10.5.2)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | _([`10.5.2`, `10.5`, `latest`](https://github.com/gearboxworks/docker-mariadb/blob/master/versions/10.5.2/DockerfileRuntime))_ |
 | [mariadb](https://www.mariadb.org/) | ![mariadb](https://img.shields.io/badge/mariadb-5.5.64-green.svg) | [![Docker Version)](https://img.shields.io/docker/v/gearboxworks/mariadb/5.5.64)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | [![Docker Size](https://img.shields.io/docker/image-size/gearboxworks/mariadb/5.5.64)](https://hub.docker.com/repository/docker/gearboxworks/mariadb) | _([`5.5.64`, `5.5`](https://github.com/gearboxworks/docker-mariadb/blob/master/versions/5.5.64/DockerfileRuntime))_ |
 
 
@@ -37,8 +37,8 @@ However, due to the flexability of Gearbox, it can be used outside of this frame
 
 There are three methods:
 
-## Method 1: Using gb-launch
-`gb-launch` is a tool specifically designed to interact with a Gearbox Docker container.
+## Method 1: Using launch
+`launch` is a tool specifically designed to interact with a Gearbox Docker container.
 
 It provides three important functional areas, without any Docker container learning curve:
 - Allows control over Gearbox Docker containers: stop, start, create, remove.
@@ -47,60 +47,94 @@ It provides three important functional areas, without any Docker container learn
 
 It also provides a functional SSH daemon for connecting remotely as well as a standard set of common tools and utilities.
 
+Further `launch` documentation can be [found here](https://github.com/gearboxworks/docker-template/blob/master/LAUNCH.md).
 
-### Setup from GitHub repo
-`gb-launch` is currently in beta testing and is included along with all Gearbox Docker repos.
+### Download launch
+`launch` is currently in beta testing and is included along with all Gearbox Docker repos.
 Once out of beta, it will be included within the Gearbox installation package.
 
-For now, simply clone this repository to your local machine.
+For now, simply download the standalone `launch` binary for your O/S.
+- [Mac OSX 64bit](https://github.com/gearboxworks/docker-template/raw/master/bin/Darwin/launch)
+- [Linux 64bit](https://github.com/gearboxworks/docker-template/raw/master/bin/Linux/launch)
+- [Windows 64bit](https://github.com/gearboxworks/docker-template/raw/master/bin/Windows/launch)
 
-`git clone https://github.com/gearboxworks/docker-mariadb.git`
 
-### Running gb-launch
-There are many ways to call gb-launch, either directly or indirectly.
+### Running launch
+There are many ways to call launch, either directly or indirectly.
 Additionally, all host environment variables will be imported into the container seamlessly.
 This allows a devloper to try multiple versions of software as though they were installed locally.
 
 If a container is missing, it will be downloaded and created. Multiple versions can co-exist.
 
-Create, and start the mariadb Gearbox container.
+Install, create, and start the mariadb Gearbox container.
 
-`./bin/gb-launch -gb-name mariadb`
+`./launch install mariadb`
 
 Create, and start the mariadb Gearbox container. Run a shell.
 
-`./bin/gb-launch -gb-name mariadb -gb-shell`
+`./launch shell mariadb`
 
-Create, and start the mariadb Gearbox container with version 10.1.44 and run a shell.
+Create, and start the mariadb Gearbox container with version 10.2.31 and run a shell.
 
-`./bin/gb-launch -gb-name mariadb -gb-version 10.1.44 -gb-shell`
+`./launch shell mariadb:10.2.31`
 
-If mariadb is symlinked to `gb-launch`, then you can drop the `-gb-name` flag.
+`./launch shell mariadb:10.2.31 ls -l`
 
-`./bin/mariadb`
+`./launch shell mariadb:10.2.31 ps -eaf`
+
+
+### Available commands
+If mariadb is symlinked to `launch`, then the Gearbox container will be determined automatically and the default command will be run.
+All available commands for a Gearbox container will be automatically symlinked upon installation.
+
+`./mariadb`
 
 Running mariadb Gearbox container default command. If a container has a default interactive command, arguments can be supplied without specifying that command.
 
-`./bin/mariadb -flag1 -flag2 variable`
+`./mariadb -flag1 -flag2 variable`
 
-`./bin/gb-launch -gb-name mariadb -gb-version 10.1.44 -flag1 -flag2 variable`
+`./launch mariadb:10.2.31 -flag1 -flag2 variable`
+
+Gearbox containers may have multiple executables that can be run. The mariadb Gearbox container has the following available commands:
+- The default command will execute `/usr/bin/mariadb` within the container.
+- `mariabackup` - will execute `/usr/bin/mariabackup` within the container.
+- `mariadb` - will execute `/usr/bin/mariadb` within the container.
+- `mariadb-access` - will execute `/usr/bin/mariadb-access` within the container.
+- `mariadb-admin` - will execute `/usr/bin/mariadb-admin` within the container.
+- `mariadb-analyze` - will execute `/usr/bin/mariadb-analyze` within the container.
+- `mariadb-backup` - will execute `/usr/bin/mariadb-backup` within the container.
+- `mariadb-binlog` - will execute `/usr/bin/mariadb-binlog` within the container.
+- `mariadb-check` - will execute `/usr/bin/mariadb-check` within the container.
+- `mariadb-conv` - will execute `/usr/bin/mariadb-conv` within the container.
+- `mariadb-convert-table-format` - will execute `/usr/bin/mariadb-convert-table-format` within the container.
+- `mariadb-dump` - will execute `/usr/bin/mariadb-dump` within the container.
+- `mariadb-dumpslow` - will execute `/usr/bin/mariadb-dumpslow` within the container.
+- `mariadb-find-rows` - will execute `/usr/bin/mariadb-find-rows` within the container.
+- `mariadb-fix-extensions` - will execute `/usr/bin/mariadb-fix-extensions` within the container.
+- `mariadb-hotcopy` - will execute `/usr/bin/mariadb-hotcopy` within the container.
+- `mariadb-import` - will execute `/usr/bin/mariadb-import` within the container.
+- `mariadb-install-db` - will execute `/usr/bin/mariadb-install-db` within the container.
+- `mariadb-optimize` - will execute `/usr/bin/mariadb-optimize` within the container.
+- `mariadb-plugin` - will execute `/usr/bin/mariadb-plugin` within the container.
+- `mariadb-repair` - will execute `/usr/bin/mariadb-repair` within the container.
+- `mariadb-secure-installation` - will execute `/usr/bin/mariadb-secure-installation` within the container.
+- `mariadb-service-convert` - will execute `/usr/bin/mariadb-service-convert` within the container.
+- `mariadb-setpermission` - will execute `/usr/bin/mariadb-setpermission` within the container.
+- `mariadb-show` - will execute `/usr/bin/mariadb-show` within the container.
+- `mariadb-slap` - will execute `/usr/bin/mariadb-slap` within the container.
+- `mariadb-tzinfo-to-sql` - will execute `/usr/bin/mariadb-tzinfo-to-sql` within the container.
+- `mariadb-upgrade` - will execute `/usr/bin/mariadb-upgrade` within the container.
+- `mariadb-waitpid` - will execute `/usr/bin/mariadb-waitpid` within the container.
+- `mariadbd-multi` - will execute `/usr/bin/mariadbd-multi` within the container.
+- `mariadbd-safe` - will execute `/usr/bin/mariadbd-safe` within the container.
+- `mariadbd-safe-helper` - will execute `/usr/bin/mariadbd-safe-helper` within the container.
 
 
-Running alternate commands within the mariadb Gearbox container.
-
-`./bin/mariadb -gb-shell -- ls -l`
-
-`./bin/gb-launch -gb-name mariadb -gb-version 10.1.44 -gb-shell -- ls -l`
-
-`./bin/mariadb -gb-shell -- ps -eaf`
-
-`./bin/gb-launch -gb-name mariadb -gb-version 10.1.44 -gb-shell -- ps -eaf`
-
-
+### Remote connection
 ssh - All [Gearbox](https://github.com/gearboxworks/) containers have a running SSH daemon. So you can connect remotely.
-To show what ports are exported to the host.
+To show what ports are exported to the host, use the following command.
 
-`./bin/gb-launch -gb-name mariadb -gb-list`
+`./launch list mariadb`
 
 
 ## Method 2: GitHub repo
@@ -168,7 +202,7 @@ shell - Run a shell, (/bin/bash), within a Docker container.
 ### SSH
 ssh - All [Gearbox](https://github.com/gearboxworks/) containers have a running SSH daemon. So you can connect remotely.
 
-Either use `gb-launch` above or discover the port and SSH directly.
+Either use `launch` above or discover the port and SSH directly.
 
 
 ```
