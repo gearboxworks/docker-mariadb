@@ -74,13 +74,13 @@ Create, and start the mariadb Gearbox container. Run a shell.
 
 `./launch shell mariadb`
 
-Create, and start the mariadb Gearbox container with version 10.2.31 and run a shell.
+Create, and start the mariadb Gearbox container with version 5.5.64 and run a shell.
 
-`./launch shell mariadb:10.2.31`
+`./launch shell mariadb:5.5.64`
 
-`./launch shell mariadb:10.2.31 ls -l`
+`./launch shell mariadb:5.5.64 ls -l`
 
-`./launch shell mariadb:10.2.31 ps -eaf`
+`./launch shell mariadb:5.5.64 ps -eaf`
 
 
 ### Available commands
@@ -93,7 +93,7 @@ Running mariadb Gearbox container default command. If a container has a default 
 
 `./mariadb -flag1 -flag2 variable`
 
-`./launch mariadb:10.2.31 -flag1 -flag2 variable`
+`./launch mariadb:5.5.64 -flag1 -flag2 variable`
 
 Gearbox containers may have multiple executables that can be run. The mariadb Gearbox container has the following available commands:
 - The default command will execute `/usr/bin/mariadb` within the container.

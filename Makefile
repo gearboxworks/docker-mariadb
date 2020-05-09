@@ -53,7 +53,7 @@ VERSIONS := $(subst /,, $(sort $(filter-out ./, $(dir $(wildcard *.*/) ) ) ) )
 endif
 
 
-.PHONY: init build push release clean list logs inspect test create shell run start stop rm
+.PHONY: init build push release clean list logs inspect test shell run start stop rm
 
 ################################################################################
 # Image related commands.
@@ -189,13 +189,6 @@ test:
 	@./bin/$@.sh $(VERSION)
 test-%:
 	@./bin/test.sh "$*"
-
-
-################################################################################
-create:
-	@./bin/$@.sh $(VERSION)
-create-%:
-	@./bin/create.sh "$*"
 
 
 ################################################################################

@@ -270,25 +270,12 @@ gb_clean() {
 		rm -f ${GB_VERDIR}/logs/*.log
 
 
-		gb_checkContainer ${GB_CONTAINERVERSION}
-		case ${STATE} in
-			'STARTED')
-				p_info "${GB_CONTAINERVERSION}" "Removing container, (present and running)."
-				docker container rm -f ${GB_CONTAINERVERSION}
-				;;
-			'STOPPED')
-				p_info "${GB_CONTAINERVERSION}" "Removing container, (present and shutdown)."
-				docker container rm -f ${GB_CONTAINERVERSION}
-				;;
-			'MISSING')
-				p_warn "${GB_CONTAINERVERSION}" "Container already removed."
-				;;
-			*)
-				p_err "${GB_CONTAINERVERSION}" "Unknown state."
-				EXIT="1"
-				continue
-				;;
-		esac
+		${LAUNCHBIN} uninstall "${GB_NAME}:${GB_VERSION}"
+		RETURN="$?"
+		if [ "${RETURN}" != "0" ]
+		then
+			EXIT="1"
+		fi
 
 
 		gb_checkImage ${GB_IMAGEMAJORVERSION}
@@ -389,43 +376,6 @@ gb_build() {
 		then
 			docker tag ${GB_IMAGENAME}:${GB_VERSION} ${GB_IMAGENAME}:latest
 		fi
-	done
-
-	return ${EXIT}
-}
-
-
-################################################################################
-gb_create() {
-	if _getVersions $@
-	then
-		return 1
-	fi
-	p_ok "${FUNCNAME[0]}" "#### Creating container for versions: ${GB_VERSIONS}"
-
-	EXIT="0"
-	for GB_VERSION in ${GB_VERSIONS}
-	do
-		gb_getenv ${GB_VERSION}
-
-		gb_checkContainer ${GB_CONTAINERVERSION}
-		case ${STATE} in
-			'STARTED')
-				p_info "${GB_IMAGEVERSION}" "Container already exists and is started."
-				;;
-			'STOPPED')
-				p_info "${GB_IMAGEVERSION}" "Container already exists and is stopped."
-				;;
-			'MISSING')
-				p_info "${GB_IMAGEVERSION}" "Creating container."
-				docker create --name ${GB_CONTAINERVERSION} ${GB_NETWORK} -P ${GB_VOLUMES} ${GB_IMAGEVERSION}
-				;;
-			*)
-				p_err "${GB_IMAGEVERSION}" "Unknown state."
-				EXIT="1"
-				continue
-				;;
-		esac
 	done
 
 	return ${EXIT}
@@ -639,13 +589,39 @@ gb_release() {
 	EXIT="0"
 	for GB_VERSION in ${GB_VERSIONS}
 	do
-		gb_clean ${GB_VERSION} && \
-		gb_build ${GB_VERSION} && \
-		gb_test ${GB_VERSION} && \
+		p_ok "${FUNCNAME[0]}" "#### Build and release version ${GB_VERSION}"
+
+		gb_clean ${GB_VERSION}
+
+		gb_build ${GB_VERSION}
+		RETURN="$?"
+		if [ "${RETURN}" != "0" ]
+		then
+			EXIT="1"
+		fi
+
+		# Just after a build, the image won't be visible for a short while.
+		sleep 2
+
+		# gb_test ${GB_VERSION}
+		${LAUNCHBIN} test "${GB_NAME}:${GB_VERSION}"
+		RETURN="$?"
+		if [ "${RETURN}" != "0" ]
+		then
+			EXIT="1"
+		fi
+
 		gb_dockerhub ${GB_VERSION}
+		RETURN="$?"
+		if [ "${RETURN}" != "0" ]
+		then
+			EXIT="1"
+		fi
+
+		gb_clean ${GB_VERSION}
 	done
 
-	return 0
+	return ${EXIT}
 }
 
 
@@ -670,7 +646,7 @@ gb_rm() {
 		fi
 	done
 
-	return 0
+	return ${EXIT}
 }
 
 
